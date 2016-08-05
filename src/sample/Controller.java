@@ -2,6 +2,7 @@ package sample;
 
 import com.sun.org.apache.regexp.internal.RE;
 import com.sun.org.apache.regexp.internal.ReaderCharacterIterator;
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -18,6 +19,11 @@ public class Controller {
     }
 
     public void onDeletec(ActionEvent actionEvent) {
+        String TextF = TextFieldResult.getText();
+        /*for(int i = 0; i < TextF.length()-1; i++){
+            TextFieldResult.setText(TextF[i]);
+        }*/
+        TextFieldResult.setText(TextF.substring(0, TextF.length()-1));
     }
 
     public void onNclick(ActionEvent actionEvent) {
@@ -45,6 +51,7 @@ public class Controller {
     }
 
     public void onPlusclick(ActionEvent actionEvent) {
+        buttonPressed = "+";
         Number1 = TextFieldResult.getText();
         TextFieldResult.setText("");
     }
@@ -56,27 +63,33 @@ public class Controller {
     }
 
     public void onComaclick(ActionEvent actionEvent) {
+        String TextF = TextFieldResult.getText();
+        TextFieldResult.setText(TextF + ".");
     }
 
     public void onEqualclick(ActionEvent actionEvent) {
         if(buttonPressed == "+") {
             Number2 = TextFieldResult.getText();
-            Result = Double.parseDouble(Number1) + Double.parseDouble(Number2);
+            Result = megaclass.Plus(Double.parseDouble(Number1), Double.parseDouble(Number2));
+            //Result = Double.parseDouble(Number1) + Double.parseDouble(Number2);
             TextFieldResult.setText(Double.toString(Result));
         }
         if(buttonPressed == "-") {
             Number2 = TextFieldResult.getText();
-            Result = Double.parseDouble(Number1) - Double.parseDouble(Number2);
+            Result = megaclass.Minus(Double.parseDouble(Number1), Double.parseDouble(Number2));
+            //Result = Double.parseDouble(Number1) - Double.parseDouble(Number2);
             TextFieldResult.setText(Double.toString(Result));
         }
         if(buttonPressed == "*") {
             Number2 = TextFieldResult.getText();
-            Result = Double.parseDouble(Number1) * Double.parseDouble(Number2);
+            Result = megaclass.Multi(Double.parseDouble(Number1), Double.parseDouble(Number2));
+            //Result = Double.parseDouble(Number1) * Double.parseDouble(Number2);
             TextFieldResult.setText(Double.toString(Result));
         }
         if(buttonPressed == "/") {
             Number2 = TextFieldResult.getText();
-            Result = Double.parseDouble(Number1) / Double.parseDouble(Number2);
+            Result = megaclass.Del(Double.parseDouble(Number1), Double.parseDouble(Number2));
+            //Result = Double.parseDouble(Number1) / Double.parseDouble(Number2);
             TextFieldResult.setText(Double.toString(Result));
         }
     }
